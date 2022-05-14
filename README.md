@@ -6,14 +6,15 @@ This application is designed to get acquainted with Django framework, please do 
 https://user-images.githubusercontent.com/65124365/168424619-cad5789d-0521-436f-b634-1d6853ed47f6.mov
 
 
-<img width="1440" alt="registration" src="https://user-images.githubusercontent.com/65124365/168424282-619b397a-6c1e-4fd7-a6bc-fb36a95d2e96.png">
-<img width="1440" alt="login" src="https://user-images.githubusercontent.com/65124365/168424271-dcb79de7-cabe-4cff-88b4-c9f9fe0d0338.png">
-<img width="1440" alt="home" src="https://user-images.githubusercontent.com/65124365/168424301-27306ba6-f66d-4206-a38a-da1c83df7eb1.png">
-<img width="1440" alt="create-update" src="https://user-images.githubusercontent.com/65124365/168424326-c4cc1400-9524-42df-b0b2-338cbec5ccee.png">
-<img width="1440" alt="detail" src="https://user-images.githubusercontent.com/65124365/168424309-b80862e1-0697-4168-8233-1b7987fc996e.png">
-<img width="1440" alt="profile" src="https://user-images.githubusercontent.com/65124365/168424333-fc150ad0-6477-4e55-9078-0babe14bea81.png">
-<img width="1440" alt="logout-modal" src="https://user-images.githubusercontent.com/65124365/168424337-2dbae1a7-1753-4d29-98b4-2c0326337dbf.png">
-<img width="1440" alt="logout" src="https://user-images.githubusercontent.com/65124365/168424358-9d379798-61ca-4651-8e2c-55b36881ffd9.png">
+
+<img width="1356" alt="registration" src="https://user-images.githubusercontent.com/65124365/168426501-1d804727-af65-47d8-b877-698cf7d24903.png">
+<img width="1440" alt="login" src="https://user-images.githubusercontent.com/65124365/168426507-f890f392-9980-451a-b057-cdaf88f90c92.png">
+<img width="1440" alt="home" src="https://user-images.githubusercontent.com/65124365/168426481-062ce4d4-7e00-4199-8b7d-530cafa1b643.png">
+<img width="1440" alt="create-update-article" src="https://user-images.githubusercontent.com/65124365/168426483-e77b23e3-82b2-4edb-be5e-c9137e6818dc.png">
+<img width="1440" alt="detail-article" src="https://user-images.githubusercontent.com/65124365/168426516-bdb11f14-8dee-4f02-a696-245ab94f9603.png">
+<img width="1440" alt="profile" src="https://user-images.githubusercontent.com/65124365/168426524-37764560-9d62-4990-8bc4-2ea70e0bb1e4.png">
+<img width="1440" alt="logout-modal" src="https://user-images.githubusercontent.com/65124365/168426527-bc604b62-206f-4ad6-8264-59195b17657b.png">
+<img width="1440" alt="logout" src="https://user-images.githubusercontent.com/65124365/168426532-fd5322be-95ca-4276-b3f2-4a2d3525aedd.png">
 
 
 
