@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<!--- START LOGOUT --->
+<div class="container-form">
+    <!--- START FORM --->
+    <form action="{% url 'logout' %}" method="POST" enctype="multipart/form-data">
+
+        <!--- Security token by Django --->
+        {% csrf_token %}
+        <!--- Security token by Django --->
+
+        <div class="wrapper-form-body">
+            <div class="form-body form-body-logout">
+                <h4>Вы только что вышли из системы</h4>
+                <p>Хотите войти повторно?</p>
+            </div>
+        </div>
+        <div class="form-footer">
+            <div class="btn-group">
+                <a class="btn button" href="{% url 'login' %}">Войти</a>
+            </div>
+        </div>
+    </form>
+    <!--- END FORM --->
+</div>
+<!--- END LOGOUT --->
+{% endblock content %}
