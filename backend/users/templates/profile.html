@@ -1,1 +1,47 @@
-{% extends 'main.html' %}{% block content %}<!--- START ADD ICON FORM LIBRARY ---><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--- END ADD ICON FORM LIBRARY --->            {% for a in articles %}                <p>a.title</p>                {{ r.title }}            {% endfor %}<!--- Начало PROFILE ---><div class="card card-profile">    <div class="wrapper-header">        <div class="wrapper-image">            <img class="avatar" id="profile-img" src="{{ user.profile.image.url }}" alt="Фотография профиля"/>        </div>    </div>    <div class="wrapper-body">        <div class="wrapper-text">            <div class="text">                <p>Имя: </p>                <p>{{user.username|title}}</p>            </div>            <div class="text">                <p>Адрес эл.почты: </p>                <p>{{user.email}}</p>            </div>        </div>        <hr>        <div class="wrapper-text">            <div class="text wrapper-social">                <p>Ваши социальные сети</p>            </div>            <div class="wrapper-social">                <!--- Social network --->                <a href="{% url 'profile' %}" id="auth-links"><i class="fa fa-twitter"></i></a>                <a href="{% url 'profile' %}" id="auth-links"><i class="fa fa-linkedin"></i></a>                <a href="{% url 'profile' %}" id="auth-links"><i class="fa fa-facebook"></i></a>                <!--- Social network --->            </div>        </div>    </div>    <div class="wrapper-footer">        <a class="btn btn-outline-success" href="{% url 'update-profile' %}">             Редактировать профиль        </a>    </div></div><!--- Конец PROFILE --->{% endblock content %}
+{% extends 'base.html' %} {% block content %}
+<!--- START ADD ICON FORM LIBRARY --->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<!--- END ADD ICON FORM LIBRARY --->
+
+{% for a in articles %}
+<p>a.title</p>
+{{ r.title }} {% endfor %}
+
+<!--- Начало PROFILE --->
+<div class="card card-profile">
+  <div class="wrapper-header">
+    <div class="wrapper-image">
+      <img class="avatar" id="profile-img" src="{{ user.profile.image.url }}" alt="Фотография профиля" />
+    </div>
+  </div>
+  <div class="wrapper-body">
+    <div class="wrapper-text">
+      <div class="text">
+        <p>Имя:</p>
+        <p>{{user.username|title}}</p>
+      </div>
+      <div class="text">
+        <p>Адрес эл.почты:</p>
+        <p>{{user.email}}</p>
+      </div>
+    </div>
+    <hr />
+    <div class="wrapper-text">
+      <div class="text wrapper-social">
+        <p>Ваши социальные сети</p>
+      </div>
+      <div class="wrapper-social">
+        <!--- Social network --->
+        <a href="{% url 'profile' %}" id="auth-links"><i class="fa fa-twitter"></i></a>
+        <a href="{% url 'profile' %}" id="auth-links"><i class="fa fa-linkedin"></i></a>
+        <a href="{% url 'profile' %}" id="auth-links"><i class="fa fa-facebook"></i></a>
+        <!--- Social network --->
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-footer">
+    <a class="btn btn-outline-success" href="{% url 'update-profile' %}"> Редактировать профиль </a>
+  </div>
+</div>
+<!--- Конец PROFILE --->
+{% endblock content %}

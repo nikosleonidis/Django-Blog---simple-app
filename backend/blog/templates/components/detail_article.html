@@ -1,1 +1,158 @@
-{% extends 'main.html' %}{% block content %}<!--- START MODAL FOR REMOVE ARTICLE ---><div class="modal fade" id="staticDetailRemove" data-bs-backdrop="static" data-bs-keyboard="false"     tabindex="-1" aria-labelledby="staticDetailRemoveLabel" aria-hidden="true">  <div class="modal-dialog">    <div class="modal-content">        <div class="modal-header">            <h4 class="modal-title" id="staticDetailRemoveLabel">Удаление статьи</h4>            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>        </div>        <div class="modal-body">            <form action="{% url 'delete-article' articles.pk %}" method="POST" enctype="multipart/form-data">            <!--- Security token by Django --->            {% csrf_token %}            <!--- Security token by Django --->            <fieldset class="form-group">                <b>Вы действительно хотите удалить статью?</b><br/>                <span>" {{ object.title }} "</span>            </fieldset>        {% if object.author == user %}        <div class="modal-footer">            <button type="submit" class="btn btn-outline-danger">Удалить</button>            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" aria-label="Close">                Отмена            </button>        </div>        {% endif %}        </form>        </div>    </div>  </div></div><!--- END MODAL FOR REMOVE ARTICLE ---><!--- START DETAIL ARTICLE ---><div class="card">  <div class="card-body">    <div class="wrapper-header">        <!--- THE BEGINNING OF THE CONDITION FOR DISPLAYING ANY OF THE HTML TAGS --->        {% if object.photo %}        <div class="wrapper-header-body">            <a  href="{% url 'profile' %}">                <img class="avatar" src="{{ object.author.profile.image.url }}" alt="Фотография профиля"/>            </a>            <div class="wrapper-header-body-text">                <div class="wrapper-text">                    <span>Автор:</span>                    <p>{{ object.author }}</p>                </div>                <div class="wrapper-text">                    <span>Дата публикации:</span>                    <p>{{ object.time_create|date:"d M Y H:i:s" }}</p>                </div>                <div class="wrapper-text">                    <span>Дата редактирования:</span>                    <p>{{ object.time_update|date:"D M Y H:i:s" }}</p>                </div>            </div>        </div>        <div class="wrapper-image">            <img class="image-article" src="{{ object.photo.url }}" alt="Фотография статьи"/>        </div>        {% else %}        <div class="wrapper-header">            <div class="wrapper-header-body wrapper-header-body-text-not-img">                <a  href="{% url 'profile' %}">                    <img class="avatar" src="{{ object.author.profile.image.url }}" alt="Фотография профиля"/>                </a>                <div class="wrapper-header-body-text">                <div class="wrapper-text">                    <span>Автор:</span>                    <p>{{ object.author }}</p>                </div>                <div class="wrapper-text">                    <span>Дата публикации:</span>                    <p>{{ object.time_create|date:"d M Y H:i:s" }}</p>                </div>                <div class="wrapper-text">                    <span>Дата редактирования:</span>                    <p>{{ object.time_update|date:"D M Y H:i:s" }}</p>                </div>            </div>            </div>        </div>        {% endif %}        <!--- THE END OF THE CONDITION FOR DISPLAYING ANY OF THE HTML TAGS --->    </div>    <div class="wrapper-body">        <div class="left">            <div class="wrapper-text">                <div class="text">                    <h2>Заголовок статьи:</h2>                    <p>{{ object.title }}</p>                </div>                <div class="text">                    <h2>Текст статьи:</h2>                    <p>{{ object.description }}</p>                </div>            </div>        </div>    </div>    <!--- THE BEGINNING OF THE CONDITION FOR DISPLAYING HTML ELEMENTS, IF AUTHORIZED --->    {% if object.author == user %}    <div class="text-footer text-footer-detail">        <a class="btn btn-outline-success" href="{% url 'update-article' object.pk %}">            Редактировать        </a>        <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal"                data-bs-target="#staticDetailRemove">            Удалить        </button>    </div>    {% endif %}    <!--- THE END OF THE CONDITION FOR DISPLAYING HTML ELEMENTS, IF AUTHORIZED --->  </div></div><!--- END DETAIL ARTICLE --->{% endblock content %}
+{% extends 'base.html' %}
+
+{% block content %}
+<!--- START MODAL FOR REMOVE ARTICLE --->
+
+<div
+  class="modal fade"
+  id="staticDetailRemove"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticDetailRemoveLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="staticDetailRemoveLabel">Удаление статьи</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'delete_article' articles.pk %}" method="POST" enctype="multipart/form-data">
+          <!--- Security token by Django --->
+          {% csrf_token %}
+          <!--- Security token by Django --->
+
+          <fieldset class="form-group">
+            <b>Вы действительно хотите удалить статью?</b><br />
+            <span>" {{ object.title }} "</span>
+          </fieldset>
+          {% if object.author == user %}
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-danger">Удалить</button>
+            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" aria-label="Close">
+              Отмена
+            </button>
+          </div>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--- END MODAL FOR REMOVE ARTICLE --->
+
+<!--- START DETAIL ARTICLE --->
+<div class="card">
+  <div class="card-body">
+    <div class="wrapper-header">
+      <!--- THE BEGINNING OF THE CONDITION FOR DISPLAYING ANY OF THE HTML TAGS --->
+      {% if object.photo %}
+      <div class="wrapper-header-body">
+        <a href="{% url 'profile' %}">
+          <img class="avatar" src="{{ object.author.profile.image.url }}" alt="Фотография профиля" />
+        </a>
+        <div class="wrapper-header-body-text">
+          <div class="wrapper-text">
+            <span>Автор:</span>
+            <p>{{ object.author }}</p>
+          </div>
+          <div class="wrapper-text">
+            <span>Дата публикации:</span>
+            <p>{{ object.publish|date:"d M Y H:i:s" }}</p>
+          </div>
+          <div class="wrapper-text">
+            <span>Дата редактирования:</span>
+            <p>{{ object.updated|date:"D M Y H:i:s" }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-image">
+        <img class="image-article" src="{{ object.photo.url }}" alt="Фотография статьи" />
+      </div>
+      {% else %}
+      <div class="wrapper-header">
+        <div class="wrapper-header-body wrapper-header-body-text-not-img">
+          <a href="{% url 'profile' %}">
+            <img class="avatar" src="{{ object.author.profile.image.url }}" alt="Фотография профиля" />
+          </a>
+          <div class="wrapper-header-body-text">
+            <div class="wrapper-text">
+              <span>Автор:</span>
+              <p>{{ object.author }}</p>
+            </div>
+            <div class="wrapper-text">
+              <span>Дата публикации:</span>
+              <p>{{ object.publish|date:"d M Y H:i:s" }}</p>
+            </div>
+            <div class="wrapper-text">
+              <span>Дата редактирования:</span>
+              <p>{{ object.updated|date:"D M Y H:i:s" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <!--- THE END OF THE CONDITION FOR DISPLAYING ANY OF THE HTML TAGS --->
+    </div>
+    <div class="wrapper-body">
+      <div class="left">
+        <div class="wrapper-text">
+          <div class="text">
+            <h2>Заголовок статьи:</h2>
+            <p>{{ object.title }}</p>
+          </div>
+          <div class="text">
+            <h2>Текст статьи:</h2>
+            <p>{{ object.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--- THE BEGINNING OF THE CONDITION FOR DISPLAYING HTML ELEMENTS, IF AUTHORIZED --->
+    {% if object.author == user %}
+    <div class="text-footer text-footer-detail">
+      <a class="btn btn-outline-success" href="{% url 'update_article' object.pk %}"> Редактировать </a>
+      <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticDetailRemove">
+        Удалить
+      </button>
+    </div>
+    {% endif %}
+    <!--- THE END OF THE CONDITION FOR DISPLAYING HTML ELEMENTS, IF AUTHORIZED --->
+  </div>
+
+<!-- Add the total number of comments -->
+  {% with comments.count as total_comments %}
+    <h2>
+        {{ total_comments }} comment{{ total_comments|pluralize }}
+    </h2>
+  {% endwith %}
+
+<!-- Now let's include a list of comments -->
+  {% for comment in comments %}
+      <div class="comment">
+          <p class="info">
+              Comment {{ forloop.counter }} by {{ comment.name }}
+              {{ comment.created }}
+          </p>
+          {{ comment.body|linebreaks }}
+      </div>
+  {% empty %}
+      <p>There are no comments yet.</p>
+  {% endfor %}
+  
+<!-- Render the form and display a success message if the form has been successfully submitted -->
+  {% if new_comment %}
+    <h2>Your comment has been added.</h2>
+  {% else %}
+      <h2>Add a new comment</h2>
+      <form action="." method="post">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <p><input type="submit" value="Add comment"></p>
+      </form>
+  {% endif %}
+</div>
+<!--- END DETAIL ARTICLE --->
+{% endblock content %}
